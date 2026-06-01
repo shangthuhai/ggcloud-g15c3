@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="720" viewBox="0 0 960 720">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f0ea" />
+      <stop offset="1" stop-color="#2e4d3b" />
+    </linearGradient>
+  </defs>
+  <rect width="960" height="720" fill="url(#bg)" />
+  <rect x="200" y="180" width="560" height="360" rx="40" fill="#fdf8f1" stroke="#2a2926" stroke-opacity="0.18" stroke-width="3" />
+  <rect x="200" y="320" width="560" height="40" fill="#f2a365" />
+  <rect x="460" y="180" width="40" height="360" fill="#f2a365" />
+  <text x="240" y="575" font-size="28" font-family="Manrope, Arial, sans-serif" fill="#2a2926" opacity="0.8">Gift Box 200K</text>
+</svg>

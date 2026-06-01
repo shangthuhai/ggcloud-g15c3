@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Product } from "@/data/catalog";
 import { formatVnd } from "@/data/catalog";
 
@@ -13,6 +14,15 @@ export function ProductCard({ product }: { product: Product }) {
       className={`flex h-full flex-col justify-between rounded-3xl border border-ink/10 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(26,26,23,0.16)] ${toneClasses[product.tone]}`}
     >
       <div className="space-y-3">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-ink/10 bg-cream/70">
+          <Image
+            src={product.image}
+            alt={product.imageAlt}
+            fill
+            sizes="(min-width: 1024px) 320px, (min-width: 768px) 45vw, 90vw"
+            className="object-cover"
+          />
+        </div>
         <div className="flex flex-wrap gap-2">
           {product.badges?.map((badge) => (
             <span

@@ -11,6 +11,8 @@ export type Product = {
   price: number;
   category: string;
   categoryLabel: string;
+  image: string;
+  imageAlt: string;
   tone: "mist" | "sand" | "cream";
   badges?: string[];
 };
@@ -57,6 +59,8 @@ export const products: Product[] = [
     price: 125000,
     category: "so-tay",
     categoryLabel: "Sổ tay",
+    image: "/images/products/notebook-linen.svg",
+    imageAlt: "So tay Linen",
     tone: "mist",
     badges: ["Bán chạy"],
   },
@@ -66,6 +70,8 @@ export const products: Product[] = [
     price: 98000,
     category: "so-tay",
     categoryLabel: "Sổ tay",
+    image: "/images/products/notebook-dot.svg",
+    imageAlt: "So tay Dot Grid",
     tone: "cream",
   },
   {
@@ -74,6 +80,8 @@ export const products: Product[] = [
     price: 36000,
     category: "but",
     categoryLabel: "Bút",
+    image: "/images/products/pen-gel.svg",
+    imageAlt: "But gel Minimal",
     tone: "sand",
   },
   {
@@ -82,6 +90,8 @@ export const products: Product[] = [
     price: 69000,
     category: "but",
     categoryLabel: "Bút",
+    image: "/images/products/pen-metal.svg",
+    imageAlt: "But ky kim loai",
     tone: "mist",
     badges: ["Cao cấp"],
   },
@@ -91,6 +101,8 @@ export const products: Product[] = [
     price: 99000,
     category: "combo-qua-tang",
     categoryLabel: "Combo",
+    image: "/images/products/gift-100.svg",
+    imageAlt: "Combo qua tang 100K",
     tone: "cream",
   },
   {
@@ -99,6 +111,8 @@ export const products: Product[] = [
     price: 199000,
     category: "combo-qua-tang",
     categoryLabel: "Combo",
+    image: "/images/products/gift-200.svg",
+    imageAlt: "Combo qua tang 200K",
     tone: "sand",
     badges: ["Quà tặng nhanh"],
   },
@@ -108,6 +122,8 @@ export const products: Product[] = [
     price: 499000,
     category: "combo-qua-tang",
     categoryLabel: "Combo",
+    image: "/images/products/gift-500.svg",
+    imageAlt: "Combo qua tang 500K",
     tone: "mist",
     badges: ["Cho B2B"],
   },
