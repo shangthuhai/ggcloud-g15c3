@@ -3,6 +3,7 @@ import { Fraunces, Manrope } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ZohoSalesIQ } from "@/components/zoho-salesiq";
+import { CartProvider } from "@/context/cart-context";
 import "./globals.css";
 
 const brandSans = Manrope({
@@ -33,13 +34,15 @@ export default function RootLayout({
       className={`${brandSans.variable} ${brandSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-cream text-ink">
-        <div className="relative flex min-h-full flex-col">
-          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(242,163,101,0.18),_transparent_55%),radial-gradient(circle_at_70%_20%,_rgba(46,77,59,0.18),_transparent_50%)]" />
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
-        </div>
-        <ZohoSalesIQ />
+        <CartProvider>
+          <div className="relative flex min-h-full flex-col">
+            <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(242,163,101,0.18),_transparent_55%),radial-gradient(circle_at_70%_20%,_rgba(46,77,59,0.18),_transparent_50%)]" />
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+            <SiteFooter />
+          </div>
+          <ZohoSalesIQ />
+        </CartProvider>
       </body>
     </html>
   );

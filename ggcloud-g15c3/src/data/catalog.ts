@@ -45,6 +45,12 @@ export const categories: Category[] = [
     tone: "cream",
   },
   {
+    slug: "lich",
+    title: "Lịch",
+    description: "Lịch để bàn và lịch treo tường, thiết kế tối giản giúp quản lý thời gian hiệu quả.",
+    tone: "sand",
+  },
+  {
     slug: "b2b",
     title: "Gói doanh nghiệp",
     description: "Bộ quà tặng B2B có sẵn spot logo, set thông điệp và báo giá số lượng.",
@@ -126,6 +132,17 @@ export const products: Product[] = [
     imageAlt: "Combo qua tang 500K",
     tone: "mist",
     badges: ["Cho B2B"],
+  },
+  {
+    id: "lc-001",
+    name: "Lịch Desk Planner 2026",
+    price: 129000,
+    category: "lich",
+    categoryLabel: "Lịch",
+    image: "/images/products/calendar.svg",
+    imageAlt: "Lich Desk Planner",
+    tone: "cream",
+    badges: ["Tặng kèm sticker"],
   },
 ];
 

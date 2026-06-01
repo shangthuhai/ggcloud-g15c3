@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import type { Product } from "@/data/catalog";
 import { formatVnd } from "@/data/catalog";
+import { useCart } from "@/context/cart-context";
 
 const toneClasses: Record<Product["tone"], string> = {
   mist: "bg-mist",
@@ -9,6 +12,8 @@ const toneClasses: Record<Product["tone"], string> = {
 };
 
 export function ProductCard({ product }: { product: Product }) {
+  const { addItem } = useCart();
+
   return (
     <div
       className={`flex h-full flex-col justify-between rounded-3xl border border-ink/10 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(26,26,23,0.16)] ${toneClasses[product.tone]}`}
@@ -42,7 +47,11 @@ export function ProductCard({ product }: { product: Product }) {
         <span className="text-lg font-semibold text-pine">
           {formatVnd(product.price)}
         </span>
-        <button className="rounded-full border border-ink/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-ink transition hover:bg-ink hover:text-cream">
+        <button
+          type="button"
+          onClick={() => addItem(product)}
+          className="rounded-full border border-ink/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-ink transition hover:bg-ink hover:text-cream"
+        >
           Thêm vào giỏ
         </button>
       </div>

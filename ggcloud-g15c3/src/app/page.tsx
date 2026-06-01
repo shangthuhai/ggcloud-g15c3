@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { CategoryCard } from "@/components/category-card";
 import { ProductCard } from "@/components/product-card";
@@ -40,6 +41,17 @@ export default function Home() {
             </div>
           </div>
           <div className="relative grid gap-4">
+            <div className="overflow-hidden rounded-[36px] border border-ink/10 bg-cream/90 p-4 shadow-[0_28px_70px_-45px_rgba(27,26,23,0.6)]">
+              <div className="relative aspect-[9/7] overflow-hidden rounded-3xl bg-[radial-gradient(circle_at_top,_rgba(242,163,101,0.2),_transparent_55%)]">
+                <Image
+                  src="/images/hero-stationery.svg"
+                  alt="Bộ đồ dùng văn phòng phẩm"
+                  fill
+                  priority
+                  className="object-contain"
+                />
+              </div>
+            </div>
             <div className="rounded-[28px] border border-ink/10 bg-cream/80 p-6 shadow-[0_30px_70px_-45px_rgba(27,26,23,0.6)]">
               <p className="text-xs uppercase tracking-[0.3em] text-charcoal/70">
                 Set B2B

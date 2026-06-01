@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ZohoBookingsEmbed } from "@/components/zoho-bookings";
+import ZohoBookingsEmbed from "@/components/zoho-bookings";
 
 export default function B2BPage() {
   return (

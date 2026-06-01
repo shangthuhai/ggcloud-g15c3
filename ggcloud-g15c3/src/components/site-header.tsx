@@ -1,13 +1,17 @@
+"use client";
+
 import Link from "next/link";
+import { useCart } from "@/context/cart-context";
 
 const navLinks = [
   { href: "/danh-muc", label: "Danh mục" },
   { href: "/danh-muc#combo", label: "Combo quà tặng" },
   { href: "/b2b", label: "B2B" },
-  { href: "/gio-hang", label: "Giỏ hàng" },
 ];
 
 export function SiteHeader() {
+  const { totalQuantity } = useCart();
+
   return (
     <header className="relative z-10">
       <div className="bg-pine text-cream">
@@ -44,6 +48,17 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/cart"
+            className="relative rounded-full border border-ink/10 px-3 py-2 transition hover:bg-sand/70"
+          >
+            Giỏ hàng
+            {totalQuantity > 0 ? (
+              <span className="absolute -right-2 -top-2 inline-flex h-6 min-w-[1.5rem] items-center justify-center rounded-full bg-ink px-2 text-xs font-semibold text-cream">
+                {totalQuantity}
+              </span>
+            ) : null}
+          </Link>
           <Link
             href="/b2b"
             className="rounded-full bg-ink px-5 py-2 text-cream transition hover:bg-charcoal"

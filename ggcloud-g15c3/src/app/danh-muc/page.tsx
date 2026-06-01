@@ -1,8 +1,11 @@
 import { CategoryCard } from "@/components/category-card";
-import { ProductCard } from "@/components/product-card";
-import { categories, products } from "@/data/catalog";
+import { ProductCatalogClient } from "@/components/product-catalog-client";
+import { categories } from "@/data/catalog";
+import { fetchProducts } from "@/lib/products";
 
-export default function CategoryPage() {
+export default async function CategoryPage() {
+  const products = await fetchProducts();
+
   return (
     <div className="mx-auto max-w-6xl space-y-16 px-6 py-12">
       <section className="grid gap-6 rounded-[32px] border border-ink/10 bg-cream p-8 md:grid-cols-[1.4fr_1fr]">
@@ -36,17 +39,15 @@ export default function CategoryPage() {
       </section>
 
       <section className="space-y-6" id="combo">
-        <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-semibold text-ink">Sản phẩm nổi bật</h2>
-          <p className="text-sm text-charcoal/80">
-            Cập nhật mới nhất cho mùa Back to School.
-          </p>
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <h2 className="text-2xl font-semibold text-ink">Bộ lọc sản phẩm</h2>
+            <p className="text-sm text-charcoal/80">
+              Lọc theo danh mục và khoảng giá để tìm nhanh sản phẩm phù hợp.
+            </p>
+          </div>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        <ProductCatalogClient categories={categories} products={products} />
       </section>
     </div>
   );

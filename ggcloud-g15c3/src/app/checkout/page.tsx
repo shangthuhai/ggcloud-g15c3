@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { cartItems, formatVnd } from "@/data/catalog";
 
@@ -10,6 +12,14 @@ export default function CheckoutPage() {
   const discount = subtotal > 300000 ? 50000 : 0;
   const total = subtotal + shipping - discount;
 
+  const handleVNPayPayment = () => {
+    window.location.href = "/payment/vnpay";
+  };
+
+  const handleMoMoPayment = () => {
+    window.location.href = "/payment/momo";
+  };
+
   return (
     <div className="mx-auto max-w-6xl space-y-12 px-6 py-12">
       <section className="space-y-3">
@@ -17,13 +27,13 @@ export default function CheckoutPage() {
           Thanh toán
         </p>
         <h1 className="text-3xl font-semibold text-ink md:text-4xl">
-          Chọn cổng thanh toán sandbox
+          Chọn cổng thanh toán
         </h1>
         <p className="text-sm text-charcoal/80">
-          VNPAY và MoMo sẽ được kết nối qua API server. Cần cấu hình key sandbox.
+          Chọn phương thức thanh toán dưới đây để hoàn tất đơn hàng của bạn.
         </p>
         <Link
-          href="/gio-hang"
+          href="/cart"
           className="text-sm font-semibold text-ink underline decoration-ink/20 underline-offset-4"
         >
           Quay lại giỏ hàng
@@ -34,31 +44,39 @@ export default function CheckoutPage() {
         <section className="grid gap-6 md:grid-cols-2">
           <div className="rounded-3xl border border-ink/10 bg-cream p-6">
             <p className="text-xs uppercase tracking-[0.3em] text-charcoal/70">
-              VNPAY sandbox
+              VNPAY
             </p>
             <p className="mt-3 text-lg font-semibold text-ink">
-              Tạo giao dịch test với thẻ ATM nội địa.
+              Thanh toán qua VNPAY sandbox
             </p>
             <p className="text-sm text-charcoal/80">
-              Endpoint: /api/payments/vnpay (POST)
+              Chuyển hướng sang cổng thanh toán VNPAY để mô phỏng quy trình thanh toán.
             </p>
-            <button className="mt-6 w-full rounded-full bg-ink px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-cream">
-              Tạo giao dịch VNPAY
+            <button
+              type="button"
+              onClick={handleVNPayPayment}
+              className="mt-6 w-full rounded-full bg-ink px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-cream transition hover:bg-charcoal"
+            >
+              Thanh toán qua VNPAY
             </button>
           </div>
 
           <div className="rounded-3xl border border-ink/10 bg-cream p-6">
             <p className="text-xs uppercase tracking-[0.3em] text-charcoal/70">
-              MoMo sandbox
+              MoMo
             </p>
             <p className="mt-3 text-lg font-semibold text-ink">
-              Kiểm tra luồng thanh toán QR hoặc app.
+              Thanh toán qua MoMo sandbox
             </p>
             <p className="text-sm text-charcoal/80">
-              Endpoint: /api/payments/momo (POST)
+              Mô phỏng quy trình thanh toán MoMo để thử nghiệm và báo cáo.
             </p>
-            <button className="mt-6 w-full rounded-full border border-ink/20 px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-ink">
-              Tạo giao dịch MoMo
+            <button
+              type="button"
+              onClick={handleMoMoPayment}
+              className="mt-6 w-full rounded-full bg-pine px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-cream transition hover:bg-pine/90"
+            >
+              Thanh toán qua MoMo
             </button>
           </div>
         </section>
@@ -85,7 +103,7 @@ export default function CheckoutPage() {
             </div>
           </div>
           <div className="rounded-2xl bg-cream px-4 py-3 text-xs text-charcoal/80">
-            Cần cấu hình key sandbox trong .env.local để bật thanh toán.
+            ℹ️ Đây là trang mô phỏng quy trình thanh toán. Chọn VNPAY để thử nghiệm.
           </div>
         </aside>
       </div>
