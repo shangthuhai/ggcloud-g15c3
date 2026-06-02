@@ -29,11 +29,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="vi"
+   <html lang="vi" suppressHydrationWarning
       className={`${brandSans.variable} ${brandSerif.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-cream text-ink">
+      <body className="min-h-full bg-cream text-ink" suppressHydrationWarning>
         <CartProvider>
           <div className="relative flex min-h-full flex-col">
             <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(242,163,101,0.18),_transparent_55%),radial-gradient(circle_at_70%_20%,_rgba(46,77,59,0.18),_transparent_50%)]" />

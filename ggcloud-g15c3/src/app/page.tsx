@@ -148,6 +148,12 @@ export default function Home() {
               <p className="mt-6 text-sm text-charcoal/70">
                 Đặt nhanh trong 2-4 ngày, hỗ trợ in logo.
               </p>
+              <Link
+                href="/bao-gia"
+                className="mt-6 inline-block rounded-full bg-ink px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-cream hover:bg-ink/90"
+              >
+                Yêu cầu báo giá số lượng lớn
+              </Link>
             </div>
           ))}
         </div>
