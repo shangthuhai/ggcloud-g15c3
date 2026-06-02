@@ -9,11 +9,48 @@ interface SuccessClientProps {
 }
 
 export default function SuccessClient({ provider }: SuccessClientProps) {
-  const { clearCart } = useCart();
+  const { items, clearCart } = useCart();
 
   useEffect(() => {
-    clearCart();
-  }, [clearCart]);
+    if (items.length === 0) return;
+
+    const syncZohoAndClearCart = async () => {
+      try {
+        const transactionCode = provider.toUpperCase() === "MOMO" ? "MOMO20260602001" : "VNP20260602001";
+        
+        const payload = {
+          customerId: "926433677", // Default customer ID for demo
+          referenceNumber: transactionCode,
+          notes: "Web Order via " + provider.toUpperCase(),
+          lineItems: items.map(item => ({
+            sku: item.id, // Using local ID as SKU in Zoho
+            name: item.name,
+            quantity: item.quantity,
+            rate: item.price
+          }))
+        };
+
+        await Promise.allSettled([
+          fetch("/api/zoho/invoice", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          }),
+          fetch("/api/zoho/inventory/orders", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          })
+        ]);
+      } catch (error) {
+        console.error("Failed to sync with Zoho:", error);
+      } finally {
+        clearCart();
+      }
+    };
+
+    syncZohoAndClearCart();
+  }, [items, clearCart, provider]);
 
   const transactionCode =
     provider.toUpperCase() === "MOMO" ? "MOMO20260602001" : "VNP20260602001";

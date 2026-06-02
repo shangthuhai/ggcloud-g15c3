@@ -6,6 +6,7 @@ export type InvoiceLineItem = {
   name: string;
   quantity: number;
   rate: number;
+  sku?: string;
 };
 
 export type InvoiceInput = {
@@ -28,6 +29,7 @@ export async function createZohoInvoice(invoice: InvoiceInput) {
         name: item.name,
         quantity: item.quantity,
         rate: item.rate,
+        sku: item.sku,
       })),
     },
   });

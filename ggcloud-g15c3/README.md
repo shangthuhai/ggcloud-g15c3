@@ -7,7 +7,7 @@ First, run the development server:
 ```bash
 Set-Location .\ggcloud-g15c3
 npm run dev
-# or
+![1780383563689](image/README/1780383563689.png)![1780383569253](image/README/1780383569253.png)![1780383581762](image/README/1780383581762.png)# or
 yarn dev
 # or
 pnpm dev
