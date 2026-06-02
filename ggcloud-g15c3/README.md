@@ -5,6 +5,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 First, run the development server:
 
 ```bash
+Set-Location .\ggcloud-g15c3
 npm run dev
 # or
 yarn dev
@@ -100,6 +101,78 @@ Example request bodies:
       "rate": 125000
     }
   ]
+}
+```
+
+## Google Cloud SQL
+
+This project is prepared for a Cloud SQL MySQL instance like the
+`quanlyvanphong` instance in Google Cloud Console.
+
+1. Wait until the Cloud SQL instance status is ready.
+2. Open **Databases** and create a database:
+
+```txt
+ggcloud_stationery
+```
+
+3. Open **Users** and create a database user, or use the existing root user.
+4. Open **Connections** and choose one connection mode:
+
+```txt
+Local development with public IP:
+- Enable public IP.
+- Add your current IP to Authorized networks.
+- Set DB_HOST to the Cloud SQL public IP.
+
+Local development with Cloud SQL Auth Proxy:
+- Start the proxy on 127.0.0.1:3306.
+- Keep DB_HOST=127.0.0.1 and DB_PORT=3306.
+
+Google Cloud deployment:
+- Attach the Cloud SQL instance to the runtime.
+- Set CLOUD_SQL_CONNECTION_NAME to project:region:instance.
+- Leave DB_HOST empty if using the Cloud SQL socket.
+```
+
+5. Copy `.env.example` to `.env.local` and fill these values:
+
+```env
+DB_USER=
+DB_PASSWORD=
+DB_NAME=ggcloud_stationery
+DB_HOST=127.0.0.1
+DB_PORT=3306
+CLOUD_SQL_CONNECTION_NAME=
+```
+
+6. Import the starter schema from `database/schema.sql`.
+
+You can run the SQL in Cloud SQL Studio, MySQL Workbench, or the mysql CLI:
+
+```bash
+mysql -h YOUR_DB_HOST -u YOUR_DB_USER -p ggcloud_stationery < database/schema.sql
+```
+
+7. Start the app and test the connection:
+
+```bash
+npm run dev
+```
+
+Open:
+
+```txt
+http://localhost:3000/api/db/health
+```
+
+If the database connection works, the response looks like:
+
+```json
+{
+  "ok": true,
+  "database": "ggcloud_stationery",
+  "serverTime": "2026-06-02T..."
 }
 ```
 
